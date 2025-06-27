@@ -6,104 +6,294 @@
     <title>MSPR Kafe - API Gateway</title>
     <style>
         body { 
-            font-family: Arial, sans-serif; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             margin: 0; 
             padding: 20px; 
-            background: #f5f5f5;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
         .container { 
-            max-width: 800px; 
+            max-width: 1000px; 
             margin: 0 auto; 
             background: white; 
-            padding: 20px; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
         }
         h1 { 
             color: #333; 
             text-align: center; 
-            margin-bottom: 30px; 
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         h2 { 
-            color: #666; 
-            border-bottom: 2px solid #007bff; 
-            padding-bottom: 8px; 
-            margin-top: 30px;
+            color: #555; 
+            border-bottom: 3px solid #667eea; 
+            padding-bottom: 10px; 
+            margin-top: 40px;
+            margin-bottom: 20px;
         }
-        .api-section {
-            margin: 20px 0;
-            padding: 15px;
+        h3 {
+            color: #666;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        .route-section {
+            margin: 25px 0;
+            padding: 20px;
             background: #f8f9fa;
-            border-radius: 5px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
         }
-        .buttons { 
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 10px 0; 
+        .route-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
         }
+        .route-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .route-path {
+            font-family: 'Courier New', monospace;
+            background: #f1f3f4;
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        .method {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .method-get { background: #28a745; color: white; }
+        .method-post { background: #007bff; color: white; }
+        .method-patch { background: #ffc107; color: black; }
+        .method-delete { background: #dc3545; color: white; }
         .btn { 
+            display: inline-block;
             padding: 8px 16px; 
             color: white; 
             text-decoration: none; 
-            border-radius: 4px; 
+            border-radius: 6px; 
             font-size: 14px; 
             border: none;
             cursor: pointer;
+            margin: 5px 5px 5px 0;
+            transition: all 0.3s ease;
         }
         .btn:hover { 
-            opacity: 0.8; 
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
-        .btn-get { background: #28a745; }
-        .btn-post { background: #007bff; }
-        .btn-secondary { background: #6c757d; }
-        .btn-orange { background: #ff6600; }
+        .btn-test { background: #17a2b8; }
+        .btn-hello { background: #28a745; }
+        .btn-api { background: #6f42c1; }
+        .btn-service { background: #fd7e14; }
+        .description {
+            color: #666;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #28a745;
+            margin-right: 8px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🚀 MSPR Kafe - API Gateway</h1>
         
-        <h2>📋 APIs Disponibles</h2>
-        
-        <div class="api-section">
-            <h3>👥 Customer API</h3>
-            <div class="buttons">
-                <a href="/customers" class="btn btn-get">GET /customers</a>
-                <a href="/api/customers" class="btn btn-get">GET /api/customers</a>
-                <a href="https://mspr-kafe-customer-api.wexop.eu/customers" target="_blank" class="btn btn-secondary">🌐 Prod Direct</a>
+        <div class="route-section">
+            <h2>� Routes API Hello</h2>
+            <p>Messages de bienvenue des APIs</p>
+            <div class="route-grid">
+                <div class="route-item">
+                    <span class="method method-get">GET</span>
+                    <div class="route-path">/customer-hello</div>
+                    <div class="description">Message: "Hello customer !"</div>
+                    <a href="/customer-hello" class="btn btn-hello">Tester</a>
+                </div>
+                <div class="route-item">
+                    <span class="method method-get">GET</span>
+                    <div class="route-path">/order-hello</div>
+                    <div class="description">Message: "Hello order !"</div>
+                    <a href="/order-hello" class="btn btn-hello">Tester</a>
+                </div>
+                <div class="route-item">
+                    <span class="method method-get">GET</span>
+                    <div class="route-path">/product-hello</div>
+                    <div class="description">Message: "Hello product !"</div>
+                    <a href="/product-hello" class="btn btn-hello">Tester</a>
+                </div>
             </div>
         </div>
 
-        <div class="api-section">
-            <h3>📦 Product API</h3>
-            <div class="buttons">
-                <a href="/products" class="btn btn-get">GET /products</a>
-                <a href="/api/products" class="btn btn-get">GET /api/products</a>
-                <a href="https://mspr-kafe-product-api.wexop.eu/products" target="_blank" class="btn btn-secondary">🌐 Prod Direct</a>
+        <div class="route-section">
+            <h2>👥 Customer API</h2>
+            <div class="route-grid">
+                <div class="route-item">
+                    <span class="method method-get">GET</span>
+                    <div class="route-path">/customers</div>
+                    <div class="description">Liste de tous les clients</div>
+                    <a href="/customers" class="btn btn-api">Accès direct</a>
+                    <a href="/api/customers" class="btn btn-api">Via proxy</a>
+                </div>
+                <div class="route-item">
+                    <span class="method method-post">POST</span>
+                    <div class="route-path">/customers</div>
+                    <div class="description">Créer un nouveau client</div>
+                </div>
+                <div class="route-item">
+                    <span class="method method-get">GET</span>
+                    <div class="route-path">/customers/:id</div>
+                    <div class="description">Détails d'un client spécifique</div>
+                </div>
+                <div class="route-item">
+                    <span class="method method-patch">PATCH</span>
+                    <div class="route-path">/customers/:id</div>
+                    <div class="description">Modifier un client</div>
+                </div>
+                <div class="route-item">
+                    <span class="method method-delete">DELETE</span>
+                    <div class="route-path">/customers/:id</div>
+                    <div class="description">Supprimer un client</div>
+                </div>
             </div>
         </div>
 
-        <div class="api-section">
-            <h3>🛒 Order API</h3>
-            <div class="buttons">
-                <a href="/orders" class="btn btn-get">GET /orders</a>
-                <a href="/api/orders" class="btn btn-get">GET /api/orders</a>
-                <a href="https://mspr-kafe-order-api.wexop.eu/orders" target="_blank" class="btn btn-secondary">🌐 Prod Direct</a>
+        <div class="route-section">
+            <h2>� Order API</h2>
+            <div class="route-grid">
+                <div class="route-item">
+                    <span class="method method-get">GET</span>
+                    <div class="route-path">/orders</div>
+                    <div class="description">Liste de toutes les commandes</div>
+                    <a href="/orders" class="btn btn-api">Accès direct</a>
+                    <a href="/api/orders" class="btn btn-api">Via proxy</a>
+                </div>
+                <div class="route-item">
+                    <span class="method method-post">POST</span>
+                    <div class="route-path">/orders</div>
+                    <div class="description">Créer une nouvelle commande</div>
+                </div>
+                <div class="route-item">
+                    <span class="method method-get">GET</span>
+                    <div class="route-path">/orders/:id</div>
+                    <div class="description">Détails d'une commande spécifique</div>
+                </div>
+                <div class="route-item">
+                    <span class="method method-patch">PATCH</span>
+                    <div class="route-path">/orders/:id</div>
+                    <div class="description">Modifier une commande</div>
+                </div>
+                <div class="route-item">
+                    <span class="method method-delete">DELETE</span>
+                    <div class="route-path">/orders/:id</div>
+                    <div class="description">Supprimer une commande</div>
+                </div>
             </div>
         </div>
 
-        <h2>🔧 Services</h2>
-        
-        <div class="api-section">
-            <div class="buttons">
-                <a href="/health" class="btn btn-secondary">🩺 Health Check</a>
-                <a href="/rabbitmq/" class="btn btn-orange">🐰 RabbitMQ</a>
-                <a href="https://grafana-mspr-kafe.wexop.eu/" target="_blank" class="btn btn-secondary">📊 Grafana</a>
-                <a href="https://kawa-keycloak.wexop.eu/" target="_blank" class="btn btn-secondary">🔑 Keycloak</a>
+        <div class="route-section">
+            <h2>� Product API</h2>
+            <div class="route-grid">
+                <div class="route-item">
+                    <span class="method method-get">GET</span>
+                    <div class="route-path">/products</div>
+                    <div class="description">Liste de tous les produits</div>
+                    <a href="/products" class="btn btn-api">Accès direct</a>
+                    <a href="/api/products" class="btn btn-api">Via proxy</a>
+                </div>
+                <div class="route-item">
+                    <span class="method method-post">POST</span>
+                    <div class="route-path">/products</div>
+                    <div class="description">Créer un nouveau produit</div>
+                </div>
+                <div class="route-item">
+                    <span class="method method-get">GET</span>
+                    <div class="route-path">/products/:id</div>
+                    <div class="description">Détails d'un produit spécifique</div>
+                </div>
+                <div class="route-item">
+                    <span class="method method-patch">PATCH</span>
+                    <div class="route-path">/products/:id</div>
+                    <div class="description">Modifier un produit</div>
+                </div>
+                <div class="route-item">
+                    <span class="method method-delete">DELETE</span>
+                    <div class="route-path">/products/:id</div>
+                    <div class="description">Supprimer un produit</div>
+                </div>
             </div>
         </div>
 
+        <div class="route-section">
+            <h2>� Monitoring & Services</h2>
+            <div class="route-grid">
+                <div class="route-item">
+                    <span class="method method-get">GET</span>
+                    <div class="route-path">/metrics</div>
+                    <div class="description">Métriques Prometheus</div>
+                    <a href="/metrics" class="btn btn-test">Voir métriques</a>
+                </div>
+                <div class="route-item">
+                    <span class="method method-get">GET</span>
+                    <div class="route-path">/health</div>
+                    <div class="description">Health check du gateway</div>
+                    <a href="/health" class="btn btn-test">Vérifier statut</a>
+                </div>
+                <div class="route-item">
+                    <span class="method method-get">GET</span>
+                    <div class="route-path">/nginx-status</div>
+                    <div class="description">Statut Nginx</div>
+                    <a href="/nginx-status" class="btn btn-test">Statut Nginx</a>
+                </div>
+                <div class="route-item">
+                    <span class="method method-get">GET</span>
+                    <div class="route-path">/rabbitmq/</div>
+                    <div class="description">Interface RabbitMQ Management</div>
+                    <a href="/rabbitmq/" class="btn btn-service">RabbitMQ UI</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="route-section">
+            <h2>🌐 Services externes</h2>
+            <div class="route-grid">
+                <div class="route-item">
+                    <span class="status-indicator"></span>
+                    <strong>Grafana</strong>
+                    <div class="description">Dashboards de monitoring</div>
+                    <a href="https://grafana-mspr-kafe.wexop.eu/" target="_blank" class="btn btn-service">Ouvrir Grafana</a>
+                </div>
+                <div class="route-item">
+                    <span class="status-indicator"></span>
+                    <strong>Keycloak</strong>
+                    <div class="description">Gestionnaire d'authentification</div>
+                    <a href="https://kawa-keycloak.wexop.eu/" target="_blank" class="btn btn-service">Ouvrir Keycloak</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; color: #666;">
+            <p>🔧 Gateway déployé sur <strong>mspr-kafe-proxy.wexop.eu:32769</strong></p>
+            <p>📝 Toutes les routes sont accessibles via ce point d'entrée unique</p>
+        </div>
     </div>
 </body>
 </html>
