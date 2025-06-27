@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  reverse-proxy:
+    build: .
+    container_name: mspr-kafe-gateway
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - mspr-network
+
+networks:
+  mspr-network:
+    driver: bridge

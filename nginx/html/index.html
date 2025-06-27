@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<html lang="fr">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <title>MSPR Kafe - API Gateway</title>
+    <style>
+        body { font-fam        <div class="section">
+            <h2>🔐 Authentification & Health</h2>
+            <div class="endpoint">
+                <span class="method">GET</span>
+                <a href="https://kawa-keycloak.wexop.eu/" target="_blank" class="url">Keycloak</a>
+                <div class="description">Service d'authentification Keycloak</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">GET</span>
+                <a href="/health" class="url">/health</a>
+                <div class="description">Health check principal (Customer API)</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">GET</span>
+                <a href="/health/customer" class="url">/health/customer</a>
+                <div class="description">Health check Customer API</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">GET</span>
+                <a href="/health/order" class="url">/health/order</a>
+                <div class="description">Health check Order API</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">GET</span>
+                <a href="/health/product" class="url">/health/product</a>
+                <div class="description">Health check Product API</div>
+            </div>
+        </div>ans-serif; margin: 40px; background: #f5f5f5; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #333; text-align: center; margin-bottom: 30px; }
+        h3 { color: #495057; margin-top: 25px; margin-bottom: 15px; }
+        h4 { color: #6c757d; margin-top: 20px; margin-bottom: 10px; font-size: 1.1em; }
+        .endpoint { margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 5px; border-left: 4px solid #007bff; }
+        .method { color: #007bff; font-weight: bold; margin-right: 10px; }
+        .url { color: #28a745; font-family: monospace; text-decoration: none; }
+        .url:hover { text-decoration: underline; color: #155724; }
+        .description { color: #666; font-size: 0.9em; margin-top: 5px; }
+        .section { margin: 30px 0; }
+        .section h2 { color: #495057; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+        ul { margin: 10px 0; padding-left: 20px; }
+        li { margin: 5px 0; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .test-buttons { margin: 20px 0; }
+        .test-btn { display: inline-block; margin: 5px; padding: 8px 16px; background: #28a745; color: white; text-decoration: none; border-radius: 4px; font-size: 0.9em; }
+        .test-btn:hover { background: #218838; color: white; text-decoration: none; }
+        .btn-secondary { background: #6c757d; }
+        .btn-secondary:hover { background: #5a6268; }
+        .btn-grafana { background: #ff6b35; }
+        .btn-grafana:hover { background: #e55a2b; }
+        .btn-auth { background: #17a2b8; }
+        .btn-auth:hover { background: #138496; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 MSPR Kafe - API Gateway</h1>
+        
+        <div class="section">
+            <h2>📱 APIs Disponibles</h2>
+            <div class="endpoint">
+                <span class="method">GET/POST/PATCH/DELETE</span>
+                <a href="/api/customers" class="url">/api/customers/*</a>
+                <div class="description">Customer API - Gestion des clients (via reverse proxy)</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">GET/POST/PATCH/DELETE</span>
+                <a href="/customers" class="url">/customers/*</a>
+                <div class="description">Customer API - Accès direct aux routes customers</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">GET/POST/PATCH/DELETE</span>
+                <a href="/api/orders" class="url">/api/orders/*</a>
+                <div class="description">Order API - Gestion des commandes (via reverse proxy)</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">GET/POST/PATCH/DELETE</span>
+                <a href="/orders" class="url">/orders/*</a>
+                <div class="description">Order API - Accès direct aux routes orders</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">GET/POST/PATCH/DELETE</span>
+                <a href="/api/products" class="url">/api/products/*</a>
+                <div class="description">Product API - Gestion des produits (via reverse proxy)</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">GET/POST/PATCH/DELETE</span>
+                <a href="/products" class="url">/products/*</a>
+                <div class="description">Product API - Accès direct aux routes products</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📊 Monitoring & Dashboards</h2>
+            <div class="endpoint">
+                <span class="method">GET</span>
+                <a href="/metrics" class="url">/metrics</a>
+                <div class="description">Métriques Prometheus (Customer API par défaut)</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">VIEW</span>
+                <a href="https://grafana-mspr-kafe.wexop.eu/d/PTSqcpJWY/customer-service?orgId=1&from=now-1h&to=now&timezone=browser&var-instance=$__all" target="_blank" class="url">Customer Service Dashboard</a>
+                <div class="description">Dashboard Grafana pour le service Customer</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">VIEW</span>
+                <a href="https://grafana-mspr-kafe.wexop.eu/d/PTSqcpJWz/product-service?orgId=1&from=now-1h&to=now&timezone=browser&var-instance=$__all" target="_blank" class="url">Product Service Dashboard</a>
+                <div class="description">Dashboard Grafana pour le service Product</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">VIEW</span>
+                <a href="https://grafana-mspr-kafe.wexop.eu/d/PTSqcpJWk/order-service?orgId=1&from=now-1h&to=now&timezone=browser&var-instance=$__all" target="_blank" class="url">Order Service Dashboard</a>
+                <div class="description">Dashboard Grafana pour le service Order</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">VIEW</span>
+                <a href="https://grafana-mspr-kafe.wexop.eu/d/rYdddlPWk/node-exporter-full" target="_blank" class="url">Node Exporter Dashboard</a>
+                <div class="description">Dashboard système avec Node Exporter</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🐰 Services de Messagerie</h2>
+            <div class="endpoint">
+                <span class="method">GET</span>
+                <a href="/rabbitmq/" class="url">/rabbitmq/</a>
+                <div class="description">RabbitMQ Management Interface</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>� Authentification & Health</h2>
+            <div class="endpoint">
+                <span class="method">GET</span>
+                <a href="https://kawa-keycloak.wexop.eu/" target="_blank" class="url">Keycloak</a>
+                <div class="description">Service d'authentification Keycloak</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">GET</span>
+                <a href="/health" class="url">/health</a>
+                <div class="description">Health check du gateway</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🌐 Services en Production</h2>
+            <p><strong>Customer API:</strong> <a href="https://mspr-kafe-customer-api.wexop.eu" target="_blank">https://mspr-kafe-customer-api.wexop.eu</a></p>
+            <p><strong>Order API:</strong> <a href="https://mspr-kafe-order-api.wexop.eu" target="_blank">https://mspr-kafe-order-api.wexop.eu</a></p>
+            <p><strong>Product API:</strong> <a href="https://mspr-kafe-product-api.wexop.eu" target="_blank">https://mspr-kafe-product-api.wexop.eu</a></p>
+            <p><strong>RabbitMQ:</strong> <a href="http://rabbimq-kawa.wexop.eu" target="_blank">http://rabbimq-kawa.wexop.eu</a></p>
+            <p><strong>Keycloak:</strong> <a href="https://kawa-keycloak.wexop.eu/" target="_blank">https://kawa-keycloak.wexop.eu/</a></p>
+        </div>
+        
+        <div class="section">
+            <h2>🧪 Tests Rapides</h2>
+            <p>Cliquez sur les boutons ci-dessous pour tester rapidement les endpoints :</p>
+            
+            <h4>📋 Tests via Reverse Proxy (localhost) :</h4>
+            <div class="test-buttons">
+                <a href="/customers" class="test-btn">GET /customers</a>
+                <a href="/products" class="test-btn">GET /products</a>
+                <a href="/orders" class="test-btn">GET /orders</a>
+                <a href="/api/customers" class="test-btn">GET /api/customers</a>
+                <a href="/api/products" class="test-btn">GET /api/products</a>
+                <a href="/api/orders" class="test-btn">GET /api/orders</a>
+            </div>
+            
+            <h4>🌐 Tests directs vers Production :</h4>
+            <div class="test-buttons">
+                <a href="https://mspr-kafe-customer-api.wexop.eu/customers" target="_blank" class="test-btn">GET Production Customers</a>
+                <a href="https://mspr-kafe-product-api.wexop.eu/products" target="_blank" class="test-btn">GET Production Products</a>
+                <a href="https://mspr-kafe-order-api.wexop.eu/orders" target="_blank" class="test-btn">GET Production Orders</a>
+            </div>
+            
+            <h4>📊 Dashboards Grafana :</h4>
+            <div class="test-buttons">
+                <a href="https://grafana-mspr-kafe.wexop.eu/d/PTSqcpJWY/customer-service?orgId=1&from=now-1h&to=now&timezone=browser&var-instance=$__all" target="_blank" class="test-btn btn-grafana">Customer Dashboard</a>
+                <a href="https://grafana-mspr-kafe.wexop.eu/d/PTSqcpJWz/product-service?orgId=1&from=now-1h&to=now&timezone=browser&var-instance=$__all" target="_blank" class="test-btn btn-grafana">Product Dashboard</a>
+                <a href="https://grafana-mspr-kafe.wexop.eu/d/PTSqcpJWk/order-service?orgId=1&from=now-1h&to=now&timezone=browser&var-instance=$__all" target="_blank" class="test-btn btn-grafana">Order Dashboard</a>
+                <a href="https://grafana-mspr-kafe.wexop.eu/d/rYdddlPWk/node-exporter-full" target="_blank" class="test-btn btn-grafana">Node Exporter</a>
+            </div>
+            
+            <h4>🔧 Monitoring & Health :</h4>
+            <div class="test-buttons">
+                <a href="/metrics" class="test-btn btn-secondary">Métriques Proxy</a>
+                <a href="/health" class="test-btn btn-secondary">Health Check</a>
+                <a href="https://mspr-kafe-customer-api.wexop.eu/metrics" target="_blank" class="test-btn btn-secondary">Métriques Prod</a>
+                <a href="https://kawa-keycloak.wexop.eu/" target="_blank" class="test-btn btn-auth">Keycloak</a>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🔍 Routes API Détaillées</h2>
+            
+            <h3>Customer API (/api/customers/ ou /customers/)</h3>
+            <ul>
+                <li><strong>GET</strong> /customers - Lister tous les clients</li>
+                <li><strong>POST</strong> /customers - Créer un client</li>
+                <li><strong>GET</strong> /customers/:id - Obtenir un client spécifique</li>
+                <li><strong>PATCH</strong> /customers/:id - Modifier un client</li>
+                <li><strong>DELETE</strong> /customers/:id - Supprimer un client</li>
+            </ul>
+            
+            <h3>Product API (/api/products/ ou /products/)</h3>
+            <ul>
+                <li><strong>GET</strong> /products - Lister tous les produits</li>
+                <li><strong>POST</strong> /products - Créer un produit</li>
+                <li><strong>GET</strong> /products/:id - Obtenir un produit spécifique</li>
+                <li><strong>PATCH</strong> /products/:id - Modifier un produit</li>
+                <li><strong>DELETE</strong> /products/:id - Supprimer un produit</li>
+            </ul>
+            
+            <h3>Order API (/api/orders/ ou /orders/)</h3>
+            <ul>
+                <li><strong>GET</strong> /orders - Lister toutes les commandes</li>
+                <li><strong>POST</strong> /orders - Créer une commande</li>
+                <li><strong>GET</strong> /orders/:id - Obtenir une commande spécifique</li>
+                <li><strong>PATCH</strong> /orders/:id - Modifier une commande</li>
+                <li><strong>DELETE</strong> /orders/:id - Supprimer une commande</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
