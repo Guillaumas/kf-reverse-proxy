@@ -13,6 +13,15 @@ services:
       - "coolify.managed=true"
       - "coolify.port=32769"
       - "coolify.name=mspr-kafe-gateway"
+       # Labels Traefik pour forcer la configuration
+      - "traefik.enable=true"
+      - "traefik.http.routers.mspr-gateway-http.rule=Host(`mspr-kafe-proxy.wexop.eu`)"
+      - "traefik.http.routers.mspr-gateway-http.entrypoints=web"
+      - "traefik.http.routers.mspr-gateway-https.rule=Host(`mspr-kafe-proxy.wexop.eu`)"
+      - "traefik.http.routers.mspr-gateway-https.entrypoints=websecure"
+      - "traefik.http.routers.mspr-gateway-https.tls.certresolver=letsencrypt"
+      - "traefik.http.services.mspr-gateway.loadbalancer.server.port=32769"
+      - "traefik.http.services.mspr-gateway.loadbalancer.healthcheck.path=/health"
     environment:
       - PORT=32769
     networks:
