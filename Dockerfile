@@ -14,9 +14,9 @@ COPY nginx/html/ /usr/share/nginx/html/
 # Exposer le port 32769
 EXPOSE 32769
 
-# Healthcheck pour Coolify
+# Healthcheck pour Coolify 
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:32769/health || exit 1
+  CMD curl -f http://localhost:32769/nginx-status || exit 1
 
 # Commande par défaut
 CMD ["nginx", "-g", "daemon off;"]
