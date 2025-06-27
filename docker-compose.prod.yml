@@ -9,6 +9,12 @@ services:
     restart: unless-stopped
     ports:
       - "32769:32769"
+    labels:
+      - "coolify.managed=true"
+      - "coolify.port=32769"
+      - "coolify.name=mspr-kafe-gateway"
+    environment:
+      - PORT=32769
     networks:
       - mspr-network
 
